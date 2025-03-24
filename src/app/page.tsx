@@ -13,7 +13,7 @@ export default function Home() {
       {/* Contenido principal */}
       <main className="flex-grow">
         <section className="flex flex-col md:flex-row items-center justify-between p-8 bg-white">
-          <div className="md:w-1/3 p-42">
+          <div className="md:w- p-42">
             <h1 className="text-4xl font-bold text-gray-900 leading-tight">
               Hotel para cada momento lleno de emociones
             </h1>
