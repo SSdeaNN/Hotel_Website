@@ -16,27 +16,27 @@ export default function Navbar() {
         {/* Enlaces */}
         <ul className="flex space-x-6 flex-1 justify-center">
           <li>
-            <Link href="/about" className="hover:underline">
+            <Link href="/about" className="hover:font-bold hover:text-[#BE8931]">
               Home
             </Link>
           </li>
           <li>
-            <Link href="/services" className="hover:underline">
+            <Link href="/services" className="hover:font-bold hover:text-[#BE8931]">
               Explorar
             </Link>
           </li>
           <li>
-            <Link href="/contact" className="hover:underline">
+            <Link href="/contact" className="hover:font-bold hover:text-[#BE8931]">
               Habitaciones
             </Link>
           </li>
           <li>
-            <Link href="/contact" className="hover:underline">
+            <Link href="/contact" className="hover:font-bold hover:text-[#BE8931]">
               Acerca de
             </Link>
           </li>
           <li>
-            <Link href="/contact" className="hover:underline">
+            <Link href="/contact" className="hover:font-bold hover:text-[#BE8931]">
               Contacto
             </Link>
           </li>
