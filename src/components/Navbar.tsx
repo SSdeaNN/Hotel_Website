@@ -42,8 +42,6 @@ export default function Navbar() {
             </Link>
           </li>
         </ul>
-
-        {/* Botones */}
         <div className="flex items-center space-x-6">
           <Link 
             href="/mis-reservaciones"
