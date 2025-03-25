@@ -42,9 +42,12 @@ export default function Navbar() {
           </li>
         </ul>
         <div>
-          <button className="bg-[#BE8931] text-black px-4 py-3 rounded-md">
+          <Link 
+            href="/mis-reservaciones"
+            className="bg-[#BE8931] text-black px-4 py-3 rounded-md hover:bg-opacity-90"
+          >
             Mis Reservaciones
-          </button>
+          </Link>
         </div>
       </div>
     </nav>
