@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Royal Hotel</title>
+    
+    <style>
+        @font-face {
+            font-family: 'Satoshi';
+            src: url('OTF/Satoshi-Bold.otf') format('opentype');
+            font-style: normal;
+        }
+    </style>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'satoshi': ['Satoshi', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body class="font-satoshi">
+
+    <header class="bg-[#0b221d] text-white p-2 flex justify-between items-center">
+        <div class="logo">
+            <img src="image/menu.jpg" alt="Royal Hotel" class="w-12" id="logoImg">
+        </div>
+        <ul class="flex space-x-6">
+            <li><a href="#" class="text-white" id="homeLink">Home</a></li>
+            <li><a href="#" class="text-white" id="explorarLink">Explorar</a></li>
+            <li><a href="#" class="text-white" id="habitacionesLink">Habitaciones</a></li>
+            <li><a href="#" class="text-white" id="acercaDeLink">Acerca de</a></li>
+            <li><a href="#" class="text-white active" id="contactoLink">Contacto</a></li>
+        </ul>
+        <button class="btn btn-warning px-6 py-2 bg-[#be8931] text-white border-none cursor-pointer" id="misReservasBtn">Mis reservas</button>
+    </header>
+
+    <br>
+
+    <div class="container mx-auto mt-10">
+        <div class="flex">
+            <div class="w-[30%] p-3 bg-white shadow-lg rounded-xl">
+                <h5 class="text-xl">Jonathan Obrian</h5>
+                <p class="text-muted">Verificación de identidad</p>
+                <p><i class="bi bi-check-circle-fill text-green-600"></i> ✔ Correo electrónico confirmado</p>
+            </div>
+
+            <div class="w-[70%] p-4 bg-white shadow-lg rounded-xl ml-6">
+                <h3 class="text-2xl mb-4">Hola, Jonathan Obrian</h3>
+                <form id="registroForm">
+                    <div class="mb-4">
+                        <label for="acercaDe" class="block text-lg">Acerca de</label>
+                        <textarea id="acercaDe" rows="3" class="form-control w-full mt-2 p-3 border-2 rounded-xl"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="ubicacion" class="block text-lg">Ubicación</label>
+                        <input type="text" id="ubicacion" class="form-control w-full mt-2 p-3 border-2 rounded-xl">
+                    </div>
+                    <div class="flex justify-between">
+                        <button type="reset" class="btn btn-secondary px-6 py-2 bg-gray-600 text-white rounded-xl" id="cancelarBtn">Cancelar</button>
+                        <button type="submit" class="btn btn-warning px-6 py-2 bg-[#be8931] text-white rounded-xl" id="guardarBtn">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+
+    <footer class="bg-[#0b221d] text-white flex flex-wrap justify-around p-6">
+        <div>
+            <h4 class="font-bold mb-2">Hotel Royal</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+        <div>
+            <h4 class="font-bold mb-2">Enlaces rápidos</h4>
+            <ul>
+                <li><a href="#" class="text-white" id="reservaLink">Reserva de habitación</a></li>
+                <li><a href="#" class="text-white" id="alojamientoLink">Alojamiento</a></li>
+                <li><a href="#" class="text-white" id="contactoLinkFooter">Contacto</a></li>
+                <li><a href="#" class="text-white" id="explorarLinkFooter">Explorar</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-bold mb-2">Compañía</h4>
+            <ul>
+                <li><a href="#" class="text-white" id="privacidadLink">Política de privacidad</a></li>
+                <li><a href="#" class="text-white" id="reembolsoLink">Política de reembolso</a></li>
+                <li><a href="#" class="text-white" id="faqLink">F.A.Q.</a></li>
+                <li><a href="#" class="text-white" id="acercaDeLinkFooter">Acerca de</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-bold mb-2">Social Media</h4>
+            <ul>
+                <li><a href="#" class="text-white" id="facebookLink">Facebook</a></li>
+                <li><a href="#" class="text-white" id="twitterLink">Twitter</a></li>
+                <li><a href="#" class="text-white" id="instagramLink">Instagram</a></li>
+                <li><a href="#" class="text-white" id="linkedinLink">LinkedIn</a></li>
+            </ul>
+        </div>
+    </footer>
+
+</body>
+</html>
