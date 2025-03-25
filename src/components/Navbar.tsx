@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FaUser } from "react-icons/fa";
 
 export default function Navbar() {
   return (
@@ -41,13 +42,18 @@ export default function Navbar() {
             </Link>
           </li>
         </ul>
-        <div>
+
+        {/* Botones */}
+        <div className="flex items-center space-x-6">
           <Link 
             href="/mis-reservaciones"
             className="bg-[#BE8931] text-black px-4 py-3 rounded-md hover:bg-opacity-90"
           >
             Mis Reservaciones
           </Link>
+          <button className="bg-[#BE8931] text-black px-4 py-3 rounded-md">
+            <FaUser />
+          </button>
         </div>
       </div>
     </nav>

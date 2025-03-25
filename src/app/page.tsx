@@ -1,8 +1,9 @@
-import { FaMapMarkerAlt, FaCalendarCheck, FaCalendar,FaWifi, FaUtensils,FaDumbbell , FaSwimmer, FaTshirt, FaParking   } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaCalendarCheck, FaCalendar, FaWifi, FaUtensils, FaDumbbell, FaSwimmer, FaTshirt, FaParking } from 'react-icons/fa';
 import { RiHotelFill } from 'react-icons/ri';
 import { IoPersonSharp } from "react-icons/io5";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Carousel from "@/components/Carousel";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
       {/* Contenido principal */}
       <main className="flex-grow">
         <section className="flex flex-col md:flex-row items-center justify-between p-8 bg-white">
-          <div className="md:w- p-42">
+        <div className="md:w- p-42">
             <h1 className="text-4xl font-bold text-gray-900 leading-tight">
               Hotel para cada momento lleno de emociones
             </h1>
@@ -29,13 +30,10 @@ export default function Home() {
               </button>
             </div>
           </div>
-
-          <div className="md:w-1/2 p-2 w-150 h-150">
-            <img
-              src="LOL_nose.jpeg"
-              alt="Vista al Paraíso"
-              className="w-150 h-150 rounded-lg"
-            />
+          
+          {/* Carrusel de imágenes */}
+          <div className="md:w-1/2 p-2">
+            <Carousel />
           </div>
         </section>
 
@@ -47,25 +45,28 @@ export default function Home() {
             </div>
             <div className="flex items-center space-x-2">
               <RiHotelFill />
-              <span className="material-icons"></span>
-              <span>Tipo de habitación: Standard</span>
+              <span>Tipo de habitación:</span>
+              <select className="bg-[#F2EBD4] text-black rounded-md">
+                <option value="Standard">Standard</option>
+                <option value="Deluxe">Deluxe</option>
+              </select>
             </div>
             <div className="flex items-center space-x-2">
               <IoPersonSharp />
-              <span className="material-icons"></span>
-              <span>Persona: 01</span>
+              <span>Persona:</span>
+              <input type="number" min="1" max="10" defaultValue="1" className="bg-[#F2EBD4] text-black rounded-md w-16 text-center" />
             </div>
             <div className="flex items-center space-x-2">
-               <FaCalendar/> 
-              <span className="material-icons"></span>
-              <span>Registrarse: 09 mar 2023</span>
+              <FaCalendar />
+              <span>Registrarse:</span>
+              <input type="date" className="bg-[#F2EBD4] text-black rounded-md" />
             </div>
             <div className="flex items-center space-x-2">
-            <FaCalendarCheck  />
-              <span className="material-icons"></span>
-              <span>Verificar: 13 mar 2023</span>
+              <FaCalendarCheck />
+              <span>Verificar:</span>
+              <input type="date" className="bg-[#F2EBD4] text-black rounded-md" />
             </div>
-            <button className="bg-[#BE8931] text-black px-4 py-3 rounded-md">
+            <button className="bg-[#BE8931] text-black px-3 py-1 rounded-md">
               Reserva ahora
             </button>
           </div>
@@ -100,34 +101,32 @@ export default function Home() {
         </section>
 
         <section className="relative p-8">
-  <div className="absolute inset-0 flex flex-col items-center justify-start text-center text-white z-10 mt-16">
-    <h2 className="text-3xl font-bold text-[#F2EBD4]">Cuartos Royal's</h2>
-    <p className="mt-2 text-[#F2EBD4]">All rooms are designed for your comfort</p>
-  </div>
-  <img 
-    src="image.jpg" 
-    alt="Royal's Hotel" 
-    className="w-full h-auto rounded-lg" 
-  />
-  <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
-    <div className="flex space-x-4 mt-4 flex-wrap justify-center">
-      <div className="bg-[#F2EBD4] text-black p-4 rounded-lg w-full sm:w-1/3 md:w-1/4">
-        <img src="cuartos.jpeg" alt="Royal's Hotel Room 1" className="w-full h-auto rounded-lg" />
-        <p className="mt-2">Television set, Extra sheets, and Breakfast</p>
-      </div>
-      <div className="bg-[#F2EBD4] text-black p-4 rounded-lg w-full sm:w-1/3 md:w-1/4">
-        <img src="cuartos.jpeg" alt="Royal's Hotel Room 2" className="w-full h-auto rounded-lg" />
-        <p className="mt-2">Television set, Extra sheets, Breakfast, and fireplace</p>
-      </div>
-      <div className="bg-[#F2EBD4] text-black p-4 rounded-lg w-full sm:w-1/3 md:w-1/4">
-        <img src="cuartos.jpeg" alt="Royal's Hotel Room 3" className="w-full h-auto rounded-lg" />
-        <p className="mt-2">Television set, Extra sheets, Breakfast, fireplace, Console, and bed rest</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+          <div className="absolute inset-0 flex flex-col items-center justify-start text-center text-white z-10 mt-16">
+            <h2 className="text-3xl font-bold text-[#F2EBD4]">Cuartos Royal's</h2>
+            <p className="mt-2 text-[#F2EBD4]">All rooms are designed for your comfort</p>
+          </div>
+          <img 
+            src="image.jpg" 
+            alt="Royal's Hotel" 
+            className="w-full h-auto rounded-lg" 
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white">
+            <div className="flex space-x-4 mt-4 flex-wrap justify-center">
+              <div className="bg-[#F2EBD4] text-black p-4 rounded-lg w-full sm:w-1/3 md:w-1/4">
+                <img src="cuartos.jpeg" alt="Royal's Hotel Room 1" className="w-full h-auto rounded-lg" />
+                <p className="mt-2">Television set, Extra sheets, and Breakfast</p>
+              </div>
+              <div className="bg-[#F2EBD4] text-black p-4 rounded-lg w-full sm:w-1/3 md:w-1/4">
+                <img src="cuartos.jpeg" alt="Royal's Hotel Room 2" className="w-full h-auto rounded-lg" />
+                <p className="mt-2">Television set, Extra sheets, Breakfast, and fireplace</p>
+              </div>
+              <div className="bg-[#F2EBD4] text-black p-4 rounded-lg w-full sm:w-1/3 md:w-1/4">
+                <img src="cuartos.jpeg" alt="Royal's Hotel Room 3" className="w-full h-auto rounded-lg" />
+                <p className="mt-2">Television set, Extra sheets, Breakfast, fireplace, Console, and bed rest</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
