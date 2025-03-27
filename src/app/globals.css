@@ -25,7 +25,6 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  /* Definir variables para los tamaños de fuente */
   --font-size-title: 36px;
   --font-size-subtitle: 24px;
   --font-size-text: 21px;
