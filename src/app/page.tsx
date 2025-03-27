@@ -37,40 +37,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-[#F2EBD4] p-8 text-black mx-auto max-w-7xl rounded-lg">
-          <div className="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
-            <div className="flex items-center space-x-2">
-              <FaMapMarkerAlt />
-              <span>Ubicación: Abuja</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RiHotelFill />
-              <span>Tipo de habitación:</span>
-              <select className="bg-[#F2EBD4] text-black rounded-md">
-                <option value="Standard">Standard</option>
-                <option value="Deluxe">Deluxe</option>
-              </select>
-            </div>
-            <div className="flex items-center space-x-2">
-              <IoPersonSharp />
-              <span>Persona:</span>
-              <input type="number" min="1" max="10" defaultValue="1" className="bg-[#F2EBD4] text-black rounded-md w-16 text-center" />
-            </div>
-            <div className="flex items-center space-x-2">
-              <FaCalendar />
-              <span>Registrarse:</span>
-              <input type="date" className="bg-[#F2EBD4] text-black rounded-md" />
-            </div>
-            <div className="flex items-center space-x-2">
-              <FaCalendarCheck />
-              <span>Verificar:</span>
-              <input type="date" className="bg-[#F2EBD4] text-black rounded-md" />
-            </div>
-            <button className="bg-[#BE8931] text-black px-3 py-1 rounded-md">
-              Reserva ahora
-            </button>
-          </div>
-        </section>
+        
 
         <section className="p-8">
           <h2 className="text-3xl font-bold text-gray-900 text-center">
