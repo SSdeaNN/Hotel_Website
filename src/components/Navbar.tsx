@@ -50,13 +50,13 @@ export default function Navbar() {
         </ul>
         <div className="flex items-center space-x-6">
 
-          {isLoggedIn && (
+          
           <Link href="mis-reservaciones">
           <button className="bg-[#BE8931] text-black px-4 py-3 rounded-md">
             Mis Reservaciones
           </button>
           </Link>
-          )}
+          
           <Link href="usuario">
           <button className="bg-[#BE8931] text-black px-4 py-3 rounded-md">
             <FaUser />

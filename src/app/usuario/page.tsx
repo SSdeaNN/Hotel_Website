@@ -121,20 +121,26 @@ export default function UsuarioPage() {
               </div>
 
               <div className="mb-4">
-                <label htmlFor="age" className="block text-sm font-medium text-gray-700">
-                  Telefono
-                </label>
-                <input
-                  type="string"
-                  id="phone"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                  min="18"
-                  max="120"
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#BE8931] focus:border-[#BE8931] text-black"
-                  required
-                />
-              </div>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+                Teléfono
+              </label>
+              <input
+                type="text"
+                id="phone"
+                value={phone}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  // Permitir solo números y limitar a 10 caracteres
+                  if (/^\d{0,10}$/.test(value)) {
+                    setPhone(value);
+                  }
+                }}
+                pattern="\d{10}" // Validación para exactamente 10 dígitos
+                title="El número de teléfono debe tener exactamente 10 dígitos"
+                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#BE8931] focus:border-[#BE8931] text-black"
+                required
+              />
+            </div>
 
               <div className="mb-4">
                 <label htmlFor="image" className="block text-sm font-medium text-gray-700">
@@ -151,7 +157,7 @@ export default function UsuarioPage() {
                     file:rounded-md file:border-0
                     file:text-sm file:font-semibold
                     file:bg-[#BE8931] file:text-black
-                    hover:file:bg-opacity-90"
+                    hover:file:bg-opacity-90 "
                 />
                 {imagePreview && (
                   <div className="mt-2">
@@ -165,6 +171,7 @@ export default function UsuarioPage() {
               </div>
             </>
           )}
+
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Correo Electrónico
@@ -174,10 +181,13 @@ export default function UsuarioPage() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" // Validación para correos electrónicos
+              title="Por favor, introduce un correo electrónico válido"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-[#BE8931] focus:border-[#BE8931] text-black"
               required
             />
           </div>
+
           <div className="mb-4">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700">
               Contraseña

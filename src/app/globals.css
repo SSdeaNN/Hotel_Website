@@ -30,7 +30,7 @@
   --font-size-text: 21px;
 }
 
-@theme inline {
+:root {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: 'Satoshi', sans-serif; 

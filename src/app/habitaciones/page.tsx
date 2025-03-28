@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FaWifi, FaTv } from "react-icons/fa";
 import { PiShowerLight } from "react-icons/pi";
+
 import { Key, useEffect, useState } from 'react';
 import { Room } from '@/types/rooms.type';
 
@@ -20,6 +21,8 @@ export default function Rooms() {
         return <FaTv className="text-black mr-2" />;
       case 'ducha':
         return <PiShowerLight className="text-black mr-2" />;
+        case 'aire acondicionado':
+          return 
       default:
         return null;
     }
@@ -73,7 +76,7 @@ export default function Rooms() {
         <img 
           src="/hotel22.png" 
           alt="Habitaciones y Suites" 
-          className="w-full h-[500px] object-cover rounded-b-lg shadow-lg" 
+          className="w-full h-170 object-cover rounded-b-lg shadow-lg" 
         />
       </section>
 

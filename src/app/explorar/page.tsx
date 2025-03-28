@@ -65,12 +65,12 @@ export default function Explorar() {
           <div className="mt-8">
             <div className="relative">
               <img
-                src="Restar.jpg"
+                src="gym.jpg"
                 alt="Restaurante"
                 className="w-390 h-190 rounded-lg"
               />
               <div className="drop-shadow-lg border-b-8 border-[#BE8931] absolute bottom-[-60px] left-0 right-0 bg-white bg-opacity-75 p-8 rounded-lg m-4">
-                <h2 className="text-2xl font-bold text-[#BE8931] mb-2 text-center">Restaurante</h2>
+                <h2 className="text-2xl font-bold text-[#BE8931] mb-2 text-center">Ginnasio</h2>
                 <p className="text-gray-700 text-justify">
                   The elegant luxury bedrooms in this gallery showcase custom interior designs & decorating ideas. View pictures and find your perfect luxury bedroom design. Luxurious bedrooms that will make you never want to leave your room again. See more ideas about luxurious bedrooms, bedroom design.
                 </p>
@@ -83,12 +83,12 @@ export default function Explorar() {
           <div className="mt-8">
             <div className="relative">
               <img
-                src="Restar.jpg"
+                src="pool.jpeg"
                 alt="Restaurante"
                 className="w-390 h-190 rounded-lg"
               />
               <div className="drop-shadow-lg border-b-8 border-[#BE8931] absolute bottom-[-60px] left-0 right-0 bg-white bg-opacity-75 p-8 rounded-lg m-4">
-                <h2 className="text-2xl font-bold text-[#BE8931] mb-2 text-center">Restaurante</h2>
+                <h2 className="text-2xl font-bold text-[#BE8931] mb-2 text-center">Piscina </h2>
                 <p className="text-gray-700 text-justify">
                   The elegant luxury bedrooms in this gallery showcase custom interior designs & decorating ideas. View pictures and find your perfect luxury bedroom design. Luxurious bedrooms that will make you never want to leave your room again. See more ideas about luxurious bedrooms, bedroom design.
                 </p>
