@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Link from 'next/link';
 
 interface Reservation {
   id: string;
@@ -105,6 +106,23 @@ export default function ConfirmarReserva() {
     <div className="flex flex-col min-h-screen bg-[#f2e6d4]">
       <Navbar />
       
+      {/* Breadcrumb */}
+    <div className="container mx-auto px-4 mt-4">
+      <div className="flex items-center space-x-2 text-black">
+        <Link href="/" className="hover:underline text-black font-medium">
+          Inicio
+        </Link>
+        <span className="text-black font-medium">&gt;&gt;</span>
+        <Link href="/habitaciones" className="hover:underline text-black font-medium">
+          Habitaciones
+        </Link>
+        <span className="text-black font-medium">&gt;&gt;</span>
+        
+        
+        <span className="text-black font-medium">Confirmar reserva</span>
+      </div>
+    </div>
+
       <main className="container mx-auto px-4 py-12 max-w-md">
         <h1 className="text-4xl font-bold mb-8 text-center text-[#062214]">Confirmar reserva</h1>
         
@@ -122,29 +140,41 @@ export default function ConfirmarReserva() {
           </div>
           
           <div className="mb-4">
-            <label className="block mb-2 text-[#062214]">Correo electrónico</label>
-            <input 
-              type="email" 
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
-              placeholder="Ingrese su correo electrónico"
-            />
-            <p className="text-sm text-[#062214] mt-1">(Se enviará un código de confirmación al correo)</p>
-          </div>
-          
-          <div className="mb-4">
-            <label className="block mb-2 text-[#062214]">Teléfono</label>
-            <input 
-              type="tel" 
-              name="phone"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
-              placeholder="Ingrese su teléfono"
-            />
-          </div>
+  <label className="block mb-2 text-[#062214]">Correo electrónico</label>
+  <input 
+    type="email" 
+    name="email"
+    value={formData.email}
+    onChange={handleInputChange}
+    className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
+    placeholder="Ingrese su correo electrónico"
+    required // Hace que el campo sea obligatorio
+    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" // Valida el formato del correo electrónico
+    title="Ingrese un correo electrónico válido (ejemplo@dominio.com)"
+  />
+  <p className="text-sm text-[#062214] mt-1">(Se enviará un código de confirmación al correo)</p>
+</div>
+
+<div className="mb-4">
+  <label className="block mb-2 text-[#062214]">Teléfono</label>
+  <input 
+    type="tel" 
+    name="phone"
+    value={formData.phone}
+    onChange={(e) => {
+      const value = e.target.value;
+      // Permitir solo números y limitar a 10 dígitos
+      if (/^\d{0,10}$/.test(value)) {
+        handleInputChange(e);
+      }
+    }}
+    className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
+    placeholder="Ingrese su teléfono"
+    required // Hace que el campo sea obligatorio
+    pattern="[0-9]{10}" // Valida que el teléfono tenga exactamente 10 dígitos
+    title="Ingrese un número de teléfono válido de 10 dígitos"
+  />
+</div>
           
           <div className="mb-6">
             <label className="block mb-2 text-[#062214]">Código de confirmación</label>

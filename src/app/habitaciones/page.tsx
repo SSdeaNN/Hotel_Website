@@ -9,7 +9,7 @@ export default function Rooms() {
     {
       id: 'estandar',
       name: 'Habitación Estándar',
-      price: 190000,
+      price: 1900,
       image: '/image.jpg',
       amenities: [
         <FaWifi className="text-black mr-2" /> ,
@@ -20,7 +20,7 @@ export default function Rooms() {
     {
       id: 'vista-mar',
       name: 'Habitación Vista al Mar',
-      price: 250000,
+      price: 2500,
       image: '/image.jpg',
       amenities: [
         <FaWifi className="text-black mr-2" /> ,
@@ -31,7 +31,7 @@ export default function Rooms() {
     {
       id: 'cocina',
       name: 'Habitación con Cocina',
-      price: 280000,
+      price: 2800,
       image: '/image.jpg',
       amenities: [
         <FaWifi className="text-black mr-2" /> ,
@@ -42,7 +42,7 @@ export default function Rooms() {
     {
       id: 'balcon',
       name: 'Habitación con Balcón',
-      price: 230000,
+      price: 2300,
       image: '/image.jpg',
       amenities: [
         <FaWifi className="text-black mr-2" /> ,
@@ -53,7 +53,7 @@ export default function Rooms() {
     {
       id: 'ejecutiva',
       name: 'Habitación Ejecutiva',
-      price: 300000,
+      price: 3000,
       image: '/image.jpg',
       amenities: [
         <FaWifi className="text-black mr-2" /> ,
@@ -64,7 +64,7 @@ export default function Rooms() {
     {
       id: 'jacuzzi',
       name: 'Suite con Jacuzzi',
-      price: 400000,
+      price: 4000,
       image: '/image.jpg',
       amenities: [
         <FaWifi className="text-black mr-2" /> ,
@@ -79,19 +79,31 @@ export default function Rooms() {
       <Navbar />
 
       <main className="flex-grow">
-        <section className="relative">
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white z-10">
-            <h1 className="text-4xl font-bold mb-4">Habitaciones y Suites</h1>
-            <p className="text-xl max-w-2xl">
-              Experimente el lujo y la comodidad en nuestras exclusivas habitaciones
-            </p>
-          </div>
-          <img 
-            src="/hotel22.png" 
-            alt="Habitaciones y Suites" 
-            className="w-full h-[500px] object-cover rounded-b-lg shadow-lg" 
-          />
-        </section>
+      <section className="relative">
+        {/* Enlace y texto en la esquina superior izquierda */}
+        <div className="absolute top-4 left-4 z-20 flex items-center space-x-2 text-white">
+          <Link href="/" className="hover:underline text-white font-medium">
+            Inicio
+          </Link>
+          <span className="text-white font-medium">&gt;&gt;</span>
+          <span className="text-white font-medium">Habitaciones</span>
+        </div>
+
+        {/* Contenido centrado */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white z-10">
+          <h1 className="text-4xl font-bold mb-4">Habitaciones y Suites</h1>
+          <p className="text-xl max-w-2xl">
+            Experimente el lujo y la comodidad en nuestras exclusivas habitaciones
+          </p>
+        </div>
+
+        {/* Imagen de fondo */}
+        <img 
+          src="/hotel22.png" 
+          alt="Habitaciones y Suites" 
+          className="w-full h-[500px] object-cover rounded-b-lg shadow-lg" 
+        />
+      </section>
 
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">

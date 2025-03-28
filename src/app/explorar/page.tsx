@@ -20,14 +20,15 @@ export default function Explorar() {
             ¡Reserva ahora y vive la experiencia!
           </h1>
           <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/3 p-6 shadow-lg rounded-lg bg-black ">
+            <div className="md:w-1/3 p-6 rounded-lg  ">
+            
               <img
                 src="OIP.jpeg"
                 alt="Hotel Room"
                 className="w-120 h-120 rounded-lg"
               />
             </div>
-            <div className="md:w-1/2 p-2">
+             <div className="md:w-1/2 p-2">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Royal Hotel</h2>
               <p className="text-gray-700 mb-4">
                 El Royal Hotel se encuentra en el corazón de Barcelona, ofreciendo una experiencia de lujo única.

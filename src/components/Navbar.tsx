@@ -1,7 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import { FaUser } from "react-icons/fa";
+import { useState } from "react";
 
 export default function Navbar() {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <nav className="bg-[#0B221D] text-white p-4">
       <div className="container mx-auto flex items-center justify-between">
@@ -43,11 +49,14 @@ export default function Navbar() {
           </li>
         </ul>
         <div className="flex items-center space-x-6">
+
+          {isLoggedIn && (
           <Link href="mis-reservaciones">
           <button className="bg-[#BE8931] text-black px-4 py-3 rounded-md">
             Mis Reservaciones
           </button>
           </Link>
+          )}
           <Link href="usuario">
           <button className="bg-[#BE8931] text-black px-4 py-3 rounded-md">
             <FaUser />
