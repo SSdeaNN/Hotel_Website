@@ -8,8 +8,8 @@ import Link from 'next/link';
 
 interface Reservation {
   id: string;
-  roomType: string;
-  checkIn: string;
+  checkInDate: string;
+  checkOutDate: string;
   checkOut: string;
   guests: number;
   totalPrice: number;
@@ -75,7 +75,7 @@ export default function ConfirmarReserva() {
     }));
   };
 
-  const handleConfirmReservation = () => {
+  const handleConfirmReservation = async () => {
     if (!formData.fullName || !formData.email || !formData.phone) {
       alert('Por favor, complete todos los campos');
       return;
@@ -87,25 +87,30 @@ export default function ConfirmarReserva() {
     }
 
     if (reservation) {
-      const storedReservations = localStorage.getItem('reservations');
       
-      if (storedReservations) {
-        const parsedReservations: Reservation[] = JSON.parse(storedReservations);
+      const response = await fetch(`http://localhost:3000/reservations/verify/${reservation.id}`,{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('userToken')}`,
+          'body': JSON.stringify({
+            verificationCode: formData.confirmationCode,
+          }),
+        },
+      });
+
+      if (!response.ok) {
+        alert('Error al confirmar la reserva');
+        return;
+      }
+      const data = await response.json();
+      alert('Reserva confirmada con éxito');
+      console.log('Reserva confirmada:', data);
+      // Redirigir al usuario a la página de mis reservaciones
         
-        const updatedReservations = parsedReservations.map(res => 
-          res.id === reservation.id 
-            ? { 
-                ...res, 
-                status: 'confirmed',
-                email: formData.email 
-              } 
-            : res
-        );
-        
-        localStorage.setItem('reservations', JSON.stringify(updatedReservations));
         
         router.push('/mis-reservaciones');
-      }
+
     }
   };
 
@@ -210,10 +215,10 @@ export default function ConfirmarReserva() {
           <h2 className="text-2xl font-bold mb-4 text-center text-[#062214]">Resumen de la reserva</h2>
           <div className="bg-[#dda456] bg-opacity-20 p-4 rounded-md mb-6">
             <p className="text-[#062214]">
-              <span className="font-semibold">Habitación:</span> {reservation.roomType}
+              <span className="font-semibold">Habitación:</span> {reservation.room.type}
             </p>
             <p className="text-[#062214]">
-              <span className="font-semibold">Fechas:</span> {reservation.checkIn} - {reservation.checkOut}
+              <span className="font-semibold">Fechas:</span> {reservation.checkInDate} - {reservation.checkOutDate}
             </p>
             <p className="text-[#062214]">
               <span className="font-semibold">Huéspedes:</span> {reservation.guests } 
@@ -227,7 +232,7 @@ export default function ConfirmarReserva() {
             onClick={handleConfirmReservation}
             className="w-full bg-[#be8931] text-white py-3 rounded-md hover:bg-opacity-90"
           >
-            Agregar reserva
+            Confirmar reserva
           </button>
         </div>
       </main>
