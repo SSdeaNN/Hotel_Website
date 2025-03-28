@@ -45,18 +45,18 @@ export default function MisReservaciones() {
       <Navbar />
       
       <main className="flex-grow container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold mb-8">Mis Reservaciones</h1>
+        <h1 className="text-4xl font-bold mb-8 text-black">Mis Reservaciones</h1>
         
         {/* Tabs */}
-        <div className="flex mb-6">
+        <div className="flex mb-6 text-[#302e2e] rounded-lg">
           <button 
-            className={`px-4 py-2 mr-2 ${activeTab === 'pendientes' ? 'bg-[#BE8931] text-white' : 'bg-gray-200'}`}
+            className={`px-4 py-2 mr-2 ${activeTab === 'pendientes' ? 'bg-[#BE8931] text-black rounded-lg shadow-lg' : 'bg-[#ebdfb6] rounded-lg' }`}
             onClick={() => setActiveTab('pendientes')}
           >
             Pendientes
           </button>
           <button 
-            className={`px-4 py-2 ${activeTab === 'reservados' ? 'bg-[#BE8931] text-white' : 'bg-gray-200'}`}
+            className={`px-4 py-2 ${activeTab === 'reservados' ? 'bg-[#BE8931] text-black rounded-lg shadow-lg' : 'bg-[#ebdfb6] rounded-lg' }`}
             onClick={() => setActiveTab('reservados')}
           >
             Reservados
@@ -69,7 +69,7 @@ export default function MisReservaciones() {
         ) : (
           <div className="space-y-4">
             {filteredReservations.map((reservation) => (
-              <div key={reservation.id} className="bg-[#F2EBD4] rounded-lg p-6 flex justify-between items-center">
+              <div key={reservation.id} className="bg-[#F2EBD4] rounded-lg p-6 flex justify-between items-center shadow-md">
                 <div>
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">{reservation.roomType}</h2>
                   <p className="text-gray-700">

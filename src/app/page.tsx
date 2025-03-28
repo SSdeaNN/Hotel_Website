@@ -32,7 +32,7 @@ export default function Home() {
           </div>
           
           {/* Carrusel de imágenes */}
-          <div className="md:w-1/2 p-2">
+          <div className="md:w-1/2 p-2 ">
             <Carousel />
           </div>
         </section>

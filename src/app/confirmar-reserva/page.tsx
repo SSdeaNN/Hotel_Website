@@ -116,7 +116,7 @@ export default function ConfirmarReserva() {
               name="fullName"
               value={formData.fullName}
               onChange={handleInputChange}
-              className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931]"
+              className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
               placeholder="Ingrese su nombre completo"
             />
           </div>
@@ -128,7 +128,7 @@ export default function ConfirmarReserva() {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931]"
+              className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
               placeholder="Ingrese su correo electrónico"
             />
             <p className="text-sm text-[#062214] mt-1">(Se enviará un código de confirmación al correo)</p>
@@ -141,7 +141,7 @@ export default function ConfirmarReserva() {
               name="phone"
               value={formData.phone}
               onChange={handleInputChange}
-              className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931]"
+              className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
               placeholder="Ingrese su teléfono"
             />
           </div>
@@ -153,7 +153,7 @@ export default function ConfirmarReserva() {
               name="confirmationCode"
               value={formData.confirmationCode}
               onChange={handleInputChange}
-              className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931]"
+              className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
               placeholder="Ingrese código"
             />
           </div>
@@ -170,7 +170,7 @@ export default function ConfirmarReserva() {
               <span className="font-semibold">Huéspedes:</span> {reservation.guests.adults} Adulto{reservation.guests.adults !== 1 ? 's' : ''} 
               {reservation.guests.children > 0 ? ` | ${reservation.guests.children} Niño${reservation.guests.children !== 1 ? 's' : ''}` : ''}
             </p>
-            <p className="text-[#be8931] text-xl font-semibold">
+            <p className=" text-xl font-semibold text-black">
               Total: ${reservation.totalPrice.toLocaleString()} MXN
             </p>
           </div>

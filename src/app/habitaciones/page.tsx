@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { FaWifi, FaTv } from "react-icons/fa";
+import { PiShowerLight } from "react-icons/pi";
 
 export default function Rooms() {
   const roomTypes = [
@@ -10,10 +12,9 @@ export default function Rooms() {
       price: 190000,
       image: '/image.jpg',
       amenities: [
-        'Wifi',
-        'Television',
-        'Aire acondicionado',
-        'Baño privado'
+        <FaWifi className="text-black mr-2" /> ,
+        <FaTv className="text-black mr-2" />,
+        <PiShowerLight className="text-black mr-2" />,
       ]
     },
     {
@@ -22,11 +23,9 @@ export default function Rooms() {
       price: 250000,
       image: '/image.jpg',
       amenities: [
-        'Wifi',
-        'Television',
-        'Aire acondicionado',
-        'Baño privado',
-        'Vista al mar'
+        <FaWifi className="text-black mr-2" /> ,
+        <FaTv className="text-black mr-2" />,
+        <PiShowerLight className="text-black mr-2" />,
       ]
     },
     {
@@ -35,11 +34,9 @@ export default function Rooms() {
       price: 280000,
       image: '/image.jpg',
       amenities: [
-        'Wifi',
-        'Television',
-        'Aire acondicionado',
-        'Baño privado',
-        'Cocina pequeña'
+        <FaWifi className="text-black mr-2" /> ,
+        <FaTv className="text-black mr-2" />,
+        <PiShowerLight className="text-black mr-2" />,
       ]
     },
     {
@@ -48,11 +45,9 @@ export default function Rooms() {
       price: 230000,
       image: '/image.jpg',
       amenities: [
-        'Wifi',
-        'Television',
-        'Aire acondicionado',
-        'Baño privado',
-        'Balcón'
+        <FaWifi className="text-black mr-2" /> ,
+        <FaTv className="text-black mr-2" />,
+        <PiShowerLight className="text-black mr-2" />,
       ]
     },
     {
@@ -61,11 +56,9 @@ export default function Rooms() {
       price: 300000,
       image: '/image.jpg',
       amenities: [
-        'Wifi',
-        'Television',
-        'Aire acondicionado',
-        'Baño privado',
-        'Minibar'
+        <FaWifi className="text-black mr-2" /> ,
+        <FaTv className="text-black mr-2" />,
+        <PiShowerLight className="text-black mr-2" />,
       ]
     },
     {
@@ -74,11 +67,9 @@ export default function Rooms() {
       price: 400000,
       image: '/image.jpg',
       amenities: [
-        'Wifi',
-        'Television',
-        'Aire acondicionado',
-        'Baño privado',
-        'Jacuzzi'
+        <FaWifi className="text-black mr-2" /> ,
+        <FaTv className="text-black mr-2" />,
+        <PiShowerLight className="text-black mr-2" />,
       ]
     }
   ];
@@ -96,9 +87,9 @@ export default function Rooms() {
             </p>
           </div>
           <img 
-            src="/hotel1.jpg" 
+            src="/hotel22.png" 
             alt="Habitaciones y Suites" 
-            className="w-full h-[500px] object-cover" 
+            className="w-full h-[500px] object-cover rounded-b-lg shadow-lg" 
           />
         </section>
 

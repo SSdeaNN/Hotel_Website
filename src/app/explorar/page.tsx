@@ -20,7 +20,7 @@ export default function Explorar() {
             ¡Reserva ahora y vive la experiencia!
           </h1>
           <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 p-2">
+            <div className="md:w-1/3 p-6 shadow-lg rounded-lg bg-black ">
               <img
                 src="OIP.jpeg"
                 alt="Hotel Room"

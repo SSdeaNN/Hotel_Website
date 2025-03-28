@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="bg-[#0B221D] text-white p-16 mt-auto">
+    <footer className="bg-[#0B221D] text-white p-16 mt-auto shadow-md">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <h3><strong>Hotel Royal</strong></h3>
@@ -11,7 +11,7 @@ export default function Footer() {
           <h3><strong>Navegación Rápida</strong></h3>
           <ul className="flex flex-col space-y-2">
             <li>
-              <a href="#" className="hover:underline">
+              <a href="/" className="hover:underline">
                 Home
               </a>
             </li>

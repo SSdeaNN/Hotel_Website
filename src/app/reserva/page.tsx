@@ -1,5 +1,7 @@
 'use client';
 
+import { FaWifi, FaTv } from 'react-icons/fa';
+import { PiShowerLight } from 'react-icons/pi';
 import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Navbar from "@/components/Navbar";
@@ -39,10 +41,9 @@ export default function Reserva() {
       price: 190000,
       image: '/image.jpg',
       amenities: [
-        'Wifi',
-        'Television',
-        'Aire acondicionado',
-        'Baño privado'
+        <FaWifi className="text-black mr-2" />,
+        <FaTv className="text-black mr-2" />,
+        <PiShowerLight className="text-black mr-2" />
       ]
     },
     {
@@ -238,7 +239,7 @@ export default function Reserva() {
                   name="checkIn"
                   value={formData.checkIn}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931]"
+                  className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
                 />
               </div>
               
@@ -249,7 +250,7 @@ export default function Reserva() {
                   name="checkOut"
                   value={formData.checkOut}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931]"
+                  className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
                 />
               </div>
               
@@ -261,7 +262,7 @@ export default function Reserva() {
                   min="1"
                   value={formData.adults}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931]"
+                  className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
                 />
               </div>
               
@@ -273,7 +274,7 @@ export default function Reserva() {
                   min="0"
                   value={formData.children}
                   onChange={handleInputChange}
-                  className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931]"
+                  className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
                 />
               </div>
               
