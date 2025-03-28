@@ -11,13 +11,21 @@ interface Reservation {
   roomType: string;
   checkIn: string;
   checkOut: string;
-  guests: {
-    adults: number;
-    children: number;
-  };
+  guests: number;
   totalPrice: number;
   status: 'pending' | 'confirmed';
   email?: string;
+  verificationCode: string;
+  user: {
+    name: string;
+    email: string;
+    phone: string;
+  };
+  room : {
+    name: string;
+    type: string;
+    price: number;
+  }
 }
 
 export default function ConfirmarReserva() {
@@ -32,20 +40,31 @@ export default function ConfirmarReserva() {
   });
 
   useEffect(() => {
-    const reservationId = searchParams.get('reservationId');
+    const fetchReservation = async () => {
+      const reservationId = searchParams.get('reservationId');
 
-    if (reservationId) {
-      const storedReservations = localStorage.getItem('reservations');
-      
-      if (storedReservations) {
-        const parsedReservations: Reservation[] = JSON.parse(storedReservations);
-        const foundReservation = parsedReservations.find(res => res.id === reservationId);
-        
-        if (foundReservation) {
-          setReservation(foundReservation);
+      if (reservationId) {
+        try {
+          const response = await fetch(`http://localhost:3000/reservations/${reservationId}`,{
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${localStorage.getItem('userToken')}`
+            },
+          });
+          if (!response.ok) throw new Error('Error fetching reservation');
+          const data: Reservation = await response.json();
+          setReservation(data);
+          formData.fullName =data.user.name;
+          formData.email = data.user.email;
+          formData.phone = data.user.phone;
+        } catch (error) {
+          console.error('Failed to fetch reservation:', error);
         }
       }
-    }
+    };
+
+    fetchReservation();
   }, [searchParams]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,7 +81,7 @@ export default function ConfirmarReserva() {
       return;
     }
 
-    if (formData.confirmationCode !== '1234') {
+    if (formData.confirmationCode !== reservation?.verificationCode) {
       alert('Código de confirmación incorrecto');
       return;
     }
@@ -152,7 +171,7 @@ export default function ConfirmarReserva() {
     pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" // Valida el formato del correo electrónico
     title="Ingrese un correo electrónico válido (ejemplo@dominio.com)"
   />
-  <p className="text-sm text-[#062214] mt-1">(Se enviará un código de confirmación al correo)</p>
+  <p className="text-sm text-[#062214] mt-1">(Se ha enviado un correo de confirmacion con el codigo de confirmacion)</p>
 </div>
 
 <div className="mb-4">
@@ -197,8 +216,7 @@ export default function ConfirmarReserva() {
               <span className="font-semibold">Fechas:</span> {reservation.checkIn} - {reservation.checkOut}
             </p>
             <p className="text-[#062214]">
-              <span className="font-semibold">Huéspedes:</span> {reservation.guests.adults} Adulto{reservation.guests.adults !== 1 ? 's' : ''} 
-              {reservation.guests.children > 0 ? ` | ${reservation.guests.children} Niño${reservation.guests.children !== 1 ? 's' : ''}` : ''}
+              <span className="font-semibold">Huéspedes:</span> {reservation.guests } 
             </p>
             <p className=" text-xl font-semibold text-black">
               Total: ${reservation.totalPrice.toLocaleString()} MXN

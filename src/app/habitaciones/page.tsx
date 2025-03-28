@@ -1,78 +1,50 @@
+'use client';
 import Link from 'next/link';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FaWifi, FaTv } from "react-icons/fa";
 import { PiShowerLight } from "react-icons/pi";
+import { Key, useEffect, useState } from 'react';
+import { Room } from '@/types/rooms.type';
 
 export default function Rooms() {
-  const roomTypes = [
-    {
-      id: 'estandar',
-      name: 'Habitación Estándar',
-      price: 1900,
-      image: '/image.jpg',
-      amenities: [
-        <FaWifi className="text-black mr-2" /> ,
-        <FaTv className="text-black mr-2" />,
-        <PiShowerLight className="text-black mr-2" />,
-      ]
-    },
-    {
-      id: 'vista-mar',
-      name: 'Habitación Vista al Mar',
-      price: 2500,
-      image: '/image.jpg',
-      amenities: [
-        <FaWifi className="text-black mr-2" /> ,
-        <FaTv className="text-black mr-2" />,
-        <PiShowerLight className="text-black mr-2" />,
-      ]
-    },
-    {
-      id: 'cocina',
-      name: 'Habitación con Cocina',
-      price: 2800,
-      image: '/image.jpg',
-      amenities: [
-        <FaWifi className="text-black mr-2" /> ,
-        <FaTv className="text-black mr-2" />,
-        <PiShowerLight className="text-black mr-2" />,
-      ]
-    },
-    {
-      id: 'balcon',
-      name: 'Habitación con Balcón',
-      price: 2300,
-      image: '/image.jpg',
-      amenities: [
-        <FaWifi className="text-black mr-2" /> ,
-        <FaTv className="text-black mr-2" />,
-        <PiShowerLight className="text-black mr-2" />,
-      ]
-    },
-    {
-      id: 'ejecutiva',
-      name: 'Habitación Ejecutiva',
-      price: 3000,
-      image: '/image.jpg',
-      amenities: [
-        <FaWifi className="text-black mr-2" /> ,
-        <FaTv className="text-black mr-2" />,
-        <PiShowerLight className="text-black mr-2" />,
-      ]
-    },
-    {
-      id: 'jacuzzi',
-      name: 'Suite con Jacuzzi',
-      price: 4000,
-      image: '/image.jpg',
-      amenities: [
-        <FaWifi className="text-black mr-2" /> ,
-        <FaTv className="text-black mr-2" />,
-        <PiShowerLight className="text-black mr-2" />,
-      ]
+  const [rooms, setRooms] = useState<Room[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+
+  const getAmenityIcon = (amenity: string) => {
+    switch (amenity.toLowerCase()) {
+      case 'wifi':
+        return <FaWifi className="text-black mr-2" />;
+      case 'tv':
+        return <FaTv className="text-black mr-2" />;
+      case 'ducha':
+        return <PiShowerLight className="text-black mr-2" />;
+      default:
+        return null;
     }
-  ];
+  };
+
+
+  useEffect(() => {
+    const fetchRooms = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/rooms');
+        if (!response.ok) throw new Error('Error fetching rooms');
+        const data:Room[] = await response.json();
+        setRooms(data);
+      } catch (err) {
+        setError('Error al cargar las habitaciones');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRooms();
+  }, []);
+
+  if (loading) return <div className="text-center py-8">Cargando habitaciones...</div>;
+  if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -107,14 +79,14 @@ export default function Rooms() {
 
         <div className="container mx-auto px-4 py-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {roomTypes.map((room) => (
+            {rooms.map((room) => (
               <div 
-                key={room.id} 
+                key={room.name} 
                 className="bg-[#F2EBD4] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105"
               >
                 <div className="h-64 w-full">
                   <img
-                    src={room.image}
+                    src={'http://localhost:3000/uploads/' + room.image}
                     alt={room.name}
                     className="w-full h-full object-cover"
                   />
@@ -125,7 +97,7 @@ export default function Rooms() {
                     ${room.price.toLocaleString()} MXN / noche
                   </p>
                   <ul className="mb-4 text-gray-700">
-                    {room.amenities.map((amenity, idx) => (
+                    {room.amenities.split(',').map((amenity: string, idx: Key | null | undefined) => (
                       <li key={idx} className="flex items-center mb-2">
                         <svg 
                           className="w-4 h-4 mr-2 text-[#BE8931]" 
@@ -138,7 +110,7 @@ export default function Rooms() {
                             clipRule="evenodd" 
                           />
                         </svg>
-                        {amenity}
+                        {getAmenityIcon(amenity)}
                       </li>
                     ))}
                   </ul>
