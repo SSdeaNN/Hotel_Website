@@ -121,7 +121,7 @@ export default function MisReservaciones() {
         <Navbar />
         <main className="flex-grow container mx-auto px-4 py-12 text-center">
           <p className="text-red-500">{error}</p>
-          <Link href="/login" className="text-[#BE8931] hover:underline mt-4 block">
+          <Link href="/usuario" className="text-[#BE8931] hover:underline mt-4 block">
             Volver a iniciar sesión
           </Link>
         </main>
@@ -133,7 +133,7 @@ export default function MisReservaciones() {
     return (
       <div className="flex flex-col min-h-screen bg-white">
         <Navbar />
-        <main className="flex-grow container mx-auto px-4 py-12 text-center">
+        <main className="flex-grow container mx-auto px-4 py-12 text-center text-black">
           <p>No tienes reservaciones en esta categoría.</p>
         </main>
         <Footer />
@@ -148,13 +148,13 @@ export default function MisReservaciones() {
 <div className="mb-4">
   <button 
     onClick={() => setActiveTab('pendientes')} 
-    className={`px-4 py-2 ${activeTab === 'pendientes' ? 'bg-[#BE8931] text-white' : 'bg-gray-200'}`}
+    className={`px-4 py-2 ${activeTab === 'pendientes' ? 'bg-[#BE8931] text-[#272626]' : 'bg-[#F2EBD4]'}`}
   >
     Pendientes
   </button>
   <button 
     onClick={() => setActiveTab('reservados')} 
-    className={`ml-2 px-4 py-2 ${activeTab === 'reservados' ? 'bg-[#BE8931] text-white' : 'bg-gray-200'}`}
+    className={`ml-2 px-4 py-2 ${activeTab === 'reservados' ? 'bg-[#BE8931] text-[#272626]' : 'bg-[#F2EBD4]'}`}
   >
     Reservados
   </button>

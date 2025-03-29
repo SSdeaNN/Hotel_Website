@@ -271,18 +271,26 @@ export default function Reserva() {
               </div>
               
               <div className="mb-4">
-                <label className="block mb-2 text-[#062214]">Huéspedes</label>
-                <input 
-                  type="number" 
-                  name="Huespedes"
-                  min="1"
-                  max={room.guests || 5}
-                  value={formData.guests}
-                  onChange={handleGuestsChange}
-                  className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
-                />
-                <p className="text-sm text-gray-500 mt-1">Máximo: {room.guests || 5} huéspedes</p>
-              </div>
+              <label className="block mb-2 text-[#062214]">Huéspedes</label>
+              <input 
+                type="number" 
+                name="Huespedes"
+                min="1"
+                max={room.guests || 5}
+                value={formData.guests}
+                onChange={(e) => {
+                  const value = parseInt(e.target.value, 10);
+                  if (value >= 1 && value <= (room.guests || 5)) {
+                    setFormData((prev) => ({
+                      ...prev,
+                      guests: value,
+                    }));
+                  }
+                }}
+                className="w-full p-2 border rounded-md border-[#dda456] focus:border-[#be8931] text-black"
+              />
+              <p className="text-sm text-gray-500 mt-1">Máximo: {room.guests || 5} huéspedes</p>
+            </div>
 
               {formData.checkIn && formData.checkOut && (
                 <div className="mb-4 p-3 bg-gray-100 rounded-md">
