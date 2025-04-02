@@ -4,6 +4,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FaWifi, FaTv } from "react-icons/fa";
 import { PiShowerLight } from "react-icons/pi";
+import { MdOutlineLocalLaundryService, MdBreakfastDining } from "react-icons/md";
+import { TbAirConditioning } from "react-icons/tb";
+
+
 
 import { Key, useEffect, useState } from 'react';
 import { Room } from '@/types/rooms.type';
@@ -14,20 +18,25 @@ export default function Rooms() {
   const [error, setError] = useState('');
 
   const getAmenityIcon = (amenity: string) => {
-    switch (amenity.toLowerCase()) {
+    console.log("Amenity:", amenity); // Depuración
+    switch (amenity.trim().toLowerCase()) {
       case 'wifi':
         return <FaWifi className="text-black mr-2" />;
       case 'tv':
         return <FaTv className="text-black mr-2" />;
       case 'ducha':
         return <PiShowerLight className="text-black mr-2" />;
-        case 'aire acondicionado':
-          return 
+      case 'aire':
+        return <TbAirConditioning className="text-black mr-2" />;
+      case 'laundry':
+        return <MdOutlineLocalLaundryService className="text-black mr-2" />;
+      case 'breakfast':
+        return <MdBreakfastDining className="text-black mr-2" />;
       default:
+        console.warn("Amenity no reconocido:", amenity);
         return null;
     }
   };
-
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -81,55 +90,46 @@ export default function Rooms() {
       </section>
 
         <div className="container mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {rooms.map((room) => (
-              <div 
-                key={room.name} 
-                className="bg-[#F2EBD4] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105"
-              >
-                <div className="h-64 w-full">
-                  <img
-                    src={'http://localhost:3000/uploads/' + room.image}
-                    alt={room.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-2">{room.name}</h2>
-                  <p className="text-[#BE8931] text-xl font-semibold mb-4">
-                    ${room.price.toLocaleString()} MXN / noche
-                  </p>
-                  <ul className="mb-4 text-gray-700">
-                    {room.amenities.split(',').map((amenity: string, idx: Key | null | undefined) => (
-                      <li key={idx} className="flex items-center mb-2">
-                        <svg 
-                          className="w-4 h-4 mr-2 text-[#BE8931]" 
-                          fill="currentColor" 
-                          viewBox="0 0 20 20"
-                        >
-                          <path 
-                            fillRule="evenodd" 
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" 
-                            clipRule="evenodd" 
-                          />
-                        </svg>
-                        {getAmenityIcon(amenity)}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link 
-                    href={{
-                      pathname: '/reserva',
-                      query: { room: room.id }
-                    }}
-                    className="block w-full text-center bg-[#BE8931] text-white py-3 rounded-md hover:bg-opacity-90 transition-colors"
-                  >
-                    Reservar ahora
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+  {rooms.map((room) => (
+    <div 
+      key={room.id} // Cambiado de room.name a room.id
+      className="bg-[#F2EBD4] rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105"
+    >
+      <div className="h-64 w-full">
+        <img
+          src={'http://localhost:3000/uploads/' + room.image}
+          alt={room.name}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="p-6">
+        <h2 className="text-2xl font-bold text-gray-900 mb-2">{room.name}</h2>
+        <p className="text-[#BE8931] text-xl font-semibold mb-4">
+          ${room.price.toLocaleString()} MXN / noche
+        </p>
+
+        <ul className="mb-4 text-gray-700 flex flex-wrap gap-4">
+          {room.amenities.split(',').map((amenity: string, idx: Key | null | undefined) => (
+            <li key={idx} className="flex items-center justify-center bg-[#ffffff] text-black rounded-full px-3 py-1 shadow-md mb-2">
+              {getAmenityIcon(amenity)}
+            </li>
+          ))}
+        </ul>
+        
+        <Link 
+          href={{
+            pathname: '/reserva',
+            query: { room: room.id }
+          }}
+          className="block w-full text-center bg-[#BE8931] text-white py-3 rounded-md hover:bg-opacity-90 transition-colors shadow-md active:scale-95 transition-transform "
+        >
+          Reservar ahora
+        </Link>
+      </div>
+    </div>
+  ))}
+</div>
         </div>
       </main>
 

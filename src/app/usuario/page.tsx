@@ -36,10 +36,9 @@ export default function UsuarioPage() {
     e.preventDefault();
     setLoading(true);
     setError('');
-
+  
     try {
       if (isRegistering) {
-        // Para registro: enviar formulario como FormData para incluir la imagen
         const formData = new FormData();
         formData.append('name', name);
         formData.append('phone', phone);
@@ -48,22 +47,23 @@ export default function UsuarioPage() {
         if (image) {
           formData.append('imageUrl', image);
         }
-
+  
         const response = await fetch('http://localhost:3000/users/', {
           method: 'POST',
           body: formData,
-          // No establecer Content-Type header, el navegador lo hará automáticamente con el boundary correcto
         });
-
+  
         const data = await response.json();
-
+  
         if (!response.ok) {
           throw new Error(data.message || 'Error en el registro');
         }
-
+  
+        // Guardar datos en localStorage
         localStorage.setItem('userToken', data.token);
+        localStorage.setItem('userName', data.name);
+        localStorage.setItem('userImage', data.imageUrl || '');
       } else {
-        // Para login: enviar como JSON normal
         const response = await fetch('http://localhost:3000/auth/login/', {
           method: 'POST',
           headers: {
@@ -71,20 +71,21 @@ export default function UsuarioPage() {
           },
           body: JSON.stringify({ email, password }),
         });
-
+  
         const data = await response.json();
-        console.log(data);
+  
         if (!response.ok) {
           throw new Error(data.message || 'Error en el login');
         }
-
+  
+        // Guardar datos en localStorage
         localStorage.setItem('userToken', data.access_token);
+        localStorage.setItem('userName', data.name);
+        localStorage.setItem('userImage', data.imageUrl || '');
       }
-
-      // Redirigir
+  
       const redirect = new URLSearchParams(window.location.search).get('redirect');
       router.push(redirect || '/');
-
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error desconocido');
     } finally {
@@ -208,7 +209,7 @@ export default function UsuarioPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#BE8931] text-black px-4 py-2 rounded-md shadow-md hover:bg-opacity-90 transition-colors disabled:opacity-50"
+            className="w-full bg-[#BE8931] text-black px-4 py-2 rounded-md shadow-md hover:bg-opacity-90 active:scale-95 transition-transform transition-colors disabled:opacity-50 "
           >
             {loading ? 'Procesando...' : isRegistering ? 'Registrar' : 'Iniciar Sesión'}
           </button>

@@ -12,6 +12,8 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import { es } from 'date-fns/locale/es';
+import { TbAirConditioning } from 'react-icons/tb';
+import { MdBreakfastDining, MdOutlineLocalLaundryService } from 'react-icons/md';
 
 registerLocale('es', es);
 
@@ -22,17 +24,25 @@ interface ReservationForm {
 }
 
 const getAmenityIcon = (amenity: string) => {
-  switch (amenity.toLowerCase()) {
-    case 'wifi':
-      return <FaWifi className="text-black mr-2" />;
-    case 'tv':
-      return <FaTv className="text-black mr-2" />;
-    case 'ducha':
-      return <PiShowerLight className="text-black mr-2" />;
-    default:
-      return null;
-  }
-};
+    console.log("Amenity:", amenity); // Depuración
+    switch (amenity.trim().toLowerCase()) {
+      case 'wifi':
+        return <FaWifi className="text-black text-xl" />;
+      case 'tv':
+        return <FaTv className="text-black text-xl" />;
+      case 'ducha':
+        return <PiShowerLight className="text-black text-xl" />;
+      case 'aire':
+        return <TbAirConditioning className="text-black text-xl" />;
+      case 'laundry':
+        return <MdOutlineLocalLaundryService className="text-black text-xl" />;
+      case 'breakfast':
+        return <MdBreakfastDining className="text-black text-xl" />;
+      default:
+        console.warn("Amenity no reconocido:", amenity);
+        return null;
+    }
+  };
 
 export default function Reserva() {
   const router = useRouter();
@@ -202,25 +212,22 @@ export default function Reserva() {
               <img 
                 src={'http://localhost:3000/uploads/' + room.image} 
                 alt={room.name} 
-                className="w-full h-64 object-cover rounded-lg mb-4" 
+                className="w-full h-64 object-cover rounded-lg mb-4 shadow-xl" 
               />
               <h2 className="text-2xl font-bold mb-2 text-[#062214]">{room.name}</h2>
               <p className="text-[#be8931] text-xl font-semibold mb-4">
                 ${room.price.toLocaleString()} MXN / noche
               </p>
-              <ul className="mb-4 text-[#062214]">
+
+              <ul className="mb-4 text-[#062214] flex flex-wrap gap-4 ">
                 {room.amenities.split(',').map((amenity, idx) => (
-                  <li key={idx} className="flex items-center mb-2">
+                  <li key={idx} className="flex items-center  w-15 h-15 bg-[#F2E5d4] rounded-full mb-2 shadow-xl">
                     <svg 
                       className="w-4 h-4 mr-2 text-[#be8931]" 
                       fill="currentColor" 
                       viewBox="0 0 20 20"
                     >
-                      <path 
-                        fillRule="evenodd" 
-                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" 
-                        clipRule="evenodd" 
-                      />
+                     
                     </svg>
                     {getAmenityIcon(amenity)}
                   </li>
@@ -312,7 +319,7 @@ export default function Reserva() {
               <button 
                 onClick={handleReserva}
                 disabled={!formData.checkIn || !formData.checkOut}
-                className="w-full bg-[#be8931] text-white py-3 rounded-md hover:bg-opacity-90 transition-colors disabled:opacity-50"
+                className="shadow-md w-full bg-[#be8931] text-white py-3 rounded-md hover:bg-opacity-90 active:scale-95 transition-transform transition-colors disabled:opacity-50"
               >
                 Confirmar Reserva
               </button>

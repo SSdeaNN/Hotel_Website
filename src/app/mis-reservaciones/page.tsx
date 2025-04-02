@@ -140,7 +140,7 @@ export default function MisReservaciones() {
         <Navbar />
         <main className="flex-grow container mx-auto px-4 py-12 text-center">
           <p className="text-red-500">{error}</p>
-          <Link href="/login" className="text-[#BE8931] hover:underline mt-4 block">
+          <Link href="/usuario" className="text-[#BE8931] hover:underline mt-4 block">
             Volver a iniciar sesión
           </Link>
         </main>
@@ -155,19 +155,20 @@ export default function MisReservaciones() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-[#F2EBD4] ">
       <Navbar />
       <main className="flex-grow container mx-auto px-4 py-12">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">Mis Reservaciones</h1>
         
         {/* Tabs */}
         <div className="flex gap-4 mb-8">
+
           <button 
             onClick={() => setActiveTab('pendientes')} 
             className={`px-6 py-3 rounded-lg font-medium transition-all ${
               activeTab === 'pendientes' 
-                ? 'bg-[#BE8931] text-white shadow-lg' 
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ? 'bg-[#BE8931] text-white shadow-md' 
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200 shadow-md active:scale-95 transition-transform transition-colors'
             }`}
           >
             Pendientes
@@ -176,8 +177,8 @@ export default function MisReservaciones() {
             onClick={() => setActiveTab('confirmadas')} 
             className={`px-6 py-3 rounded-lg font-medium transition-all ${
               activeTab === 'confirmadas' 
-                ? 'bg-[#BE8931] text-white shadow-lg' 
-                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                ? 'bg-[#BE8931] text-white shadow-md' 
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-200 shadow-md active:scale-95 transition-transform transition-colors'
             }`}
           >
             Confirmadas
@@ -186,7 +187,7 @@ export default function MisReservaciones() {
 
         {/* Contenido */}
         {filteredReservations.length === 0 ? (
-          <div className="text-center py-12 bg-gray-50 rounded-xl">
+          <div className="text-center py-12 bg-gray-50 rounded-xl shadow">
             <p className="text-gray-500 text-lg">
               No tienes reservaciones {activeTab === 'pendientes' ? 'pendientes' : 'confirmadas'}
             </p>
@@ -196,9 +197,9 @@ export default function MisReservaciones() {
             {filteredReservations.map(reservation => (
               <div 
                 key={reservation.id}
-                className="relative bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-6"
+                className="relative bg-white rounded-xl shadow hover:shadow-2xl transition-shadow duration-300 p-6"
               >
-                <span className={`absolute -top-3 right-4 px-3 py-1 rounded-full text-sm font-medium 
+                <span className={`absolute -top-3 right-4 px-3 py-1 rounded-full text-sm font-medium shadow
                   ${reservation.status === 'confirmed' 
                     ? 'bg-green-100 text-green-800' 
                     : 'bg-yellow-100 text-yellow-800'}`}>
@@ -209,21 +210,26 @@ export default function MisReservaciones() {
                   <h2 className="text-2xl font-bold text-gray-800">{reservation.roomType}</h2>
                   
                   <div className="grid grid-cols-2 gap-4 text-gray-600">
-                    <div className="flex items-center space-x-2">
-                      <CalendarIcon className="h-5 w-5 text-[#BE8931]"/>
-                      <div>
-                        <p className="text-sm font-semibold">Check-in</p>
-                        <p className="text-gray-900">{ parseDateString(reservation.checkIn)}</p>
-                      </div>
+                   <div className="flex items-center space-x-2">
+                    <CalendarIcon className="h-5 w-5 text-[#BE8931]" />
+                    <div>
+                      <p className="text-sm font-semibold">Check-in</p>
+                      <p className="text-gray-900">
+                        {reservation.checkIn ? parseDateString(reservation.checkIn) : "Fecha no disponible"}
+                      </p>
                     </div>
-                    
-                    <div className="flex items-center space-x-2">
-                      <CalendarIcon className="h-5 w-5 text-[#BE8931]"/>
-                      <div>
-                        <p className="text-sm font-semibold">Check-out</p>
-                        <p className="text-gray-900">{ parseDateString(reservation.checkOut)}</p>
-                      </div>
+                  </div>
+
+                  {/* Check-out */}
+                  <div className="flex items-center space-x-2">
+                    <CalendarIcon className="h-5 w-5 text-[#BE8931]" />
+                    <div>
+                      <p className="text-sm font-semibold">Check-out</p>
+                      <p className="text-gray-900">
+                        {reservation.checkOut ? parseDateString(reservation.checkOut) : "Fecha no disponible"}
+                      </p>
                     </div>
+                  </div>
                     
                     <div className="flex items-center space-x-2">
                       <UserGroupIcon className="h-5 w-5 text-[#BE8931]"/>
@@ -247,7 +253,7 @@ export default function MisReservaciones() {
                       <button 
                         onClick={() => confirmarReservation(reservation.id)}
                         className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg 
-                                transition-colors duration-200 flex items-center"
+                                transition-colors duration-200 flex items-center transition-colors shadow-md active:scale-95 transition-transform"
                       >
                         <XCircleIcon className="w-5 h-5 mr-2"/>
                         Confirmar reservación

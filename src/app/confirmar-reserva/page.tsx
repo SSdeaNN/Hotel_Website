@@ -230,7 +230,7 @@ export default function ConfirmarReserva() {
           
           <button 
             onClick={handleConfirmReservation}
-            className="w-full bg-[#be8931] text-white py-3 rounded-md hover:bg-opacity-90"
+            className="w-full bg-[#be8931] text-white py-3 rounded-md hover:bg-opacity-90 shadow-md transition-colors active:scale-95 transition-transform transition-colors"
           >
             Confirmar reserva
           </button>
